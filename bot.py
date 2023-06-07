@@ -1,6 +1,9 @@
-import os
 import discord
 from discord import app_commands
+
+from decouple import config
+
+DISCORD_TOKEN = config('DISCORD_TOKEN')
 
 class Bot(discord.Client):
   async def on_ready(self):
@@ -17,4 +20,5 @@ intents.message_content = True
 client = Bot(intents=intents)
 tree = app_commands.CommandTree(client)
 
-client.run("token")
+
+client.run(DISCORD_TOKEN)
