@@ -27,7 +27,7 @@ class OpenAi(app_commands.Group):
             print("Sending image")
             
             with io.BytesIO(response) as file:
-                await interaction.edit_original_response(attachments=[discord.File(file, filename="dalle.png")])
+                await interaction.edit_original_response(content=f">>> {context}",attachments=[discord.File(file, filename="dalle.png")])
             
 
                 
