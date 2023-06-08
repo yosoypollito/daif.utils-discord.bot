@@ -19,6 +19,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 extensions = [
   'cmds.others',
   'cmds.translate',
+  'cmds.currency',
 ]
 
 @bot.event
