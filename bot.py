@@ -1,5 +1,7 @@
 import discord
 from discord import app_commands
+from discord.ext import commands
+
 from decouple import config
 
 import cmds.others as others
@@ -7,22 +9,18 @@ import cmds.others as others
 
 DISCORD_TOKEN = config('DISCORD_TOKEN')
 
-class Bot(discord.Client):
-  async def on_ready(self):
-    await tree.sync();
-    print(f'Logged on as {self.user}!')
-  
-  async def on_message(self, message):
-    print(f'Message from {message.author}: {message.content}')
-    
-
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = Bot(intents=intents)
-tree = app_commands.CommandTree(client)
+bot = commands.Bot(command_prefix='/', intents=intents)
 
-tree.add_command(others.Others())
+@bot.event
+async def on_ready():
+  print("Loading commands")
+  await bot.load_extension('cmds.others')
+  
+  print("Syncing commands");
+  await bot.tree.sync()
+  print(f'We have logged in as {bot.user}')
 
-
-client.run(DISCORD_TOKEN)
+bot.run(DISCORD_TOKEN)
