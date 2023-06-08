@@ -121,7 +121,7 @@ lang_codes_autocomplete = {
 "Zulu":"zu"
 }
 
-def get_autocomplete(current):
+def get_lang_code_autocomplete(current):
     data = []
     for key, value in lang_codes_autocomplete.items():
         if key.lower().startswith(current.lower()) or value.lower().startswith(current.lower()):
@@ -141,11 +141,11 @@ class Translate(commands.Cog):
     
     @translate.autocomplete("lang")
     async def translate_autocomplete(self, interaction: Interaction, current: str) -> typing.List[app_commands.Choice[str]]:
-        return get_autocomplete(current)
+        return get_lang_code_autocomplete(current)
 
     @translate.autocomplete("to")
     async def translate_autocomplete(self, interaction: Interaction, current: str) -> typing.List[app_commands.Choice[str]]:
-        return get_autocomplete(current)
+        return get_lang_code_autocomplete(current)
         
 async def setup(bot):
     await bot.add_cog(Translate(bot))
