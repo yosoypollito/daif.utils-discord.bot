@@ -20,6 +20,7 @@ extensions = [
   'cmds.others',
   'cmds.translate',
   'cmds.currency',
+  'cmds.openai'
 ]
 
 @bot.event
