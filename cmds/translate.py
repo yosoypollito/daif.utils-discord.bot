@@ -124,7 +124,7 @@ lang_codes_autocomplete = {
 def get_autocomplete(current):
     data = []
     for key, value in lang_codes_autocomplete.items():
-        if key.lower().startswith(current.lower()):
+        if key.lower().startswith(current.lower()) or value.lower().startswith(current.lower()):
             data.append(app_commands.Choice(name=key, value=value))
     return data[0:24]
 
