@@ -1,16 +1,13 @@
 import openai
-from decouple import config
 import urllib.request as requests
 
-api_key = config("OPEN_AI_API_KEY")
-api_base = config("OPEN_AI_API_BASE")
+from .config import OpenAIClient
 
-openai.api_key = api_key
-openai.api_base = api_base
+openAIClient = OpenAIClient()
 
 async def generateImage(prompt):
   print("Generating image")
-  response = openai.Image.create(prompt=prompt, n=1, size="1024x1024")
+  response = openAIClient.Image.create(prompt=prompt, n=1, size="1024x1024")
   
   print("Image created")
   

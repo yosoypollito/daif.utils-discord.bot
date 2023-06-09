@@ -4,12 +4,13 @@ from decouple import config
 api_key = config("OPEN_AI_API_KEY")
 api_base = config("OPEN_AI_API_BASE")
 
-def load_openai():
-  print("Loading openai config")
-
-  openai.api_key = api_key
-  openai.api_base = api_base
-
-
-async def setup():
-    print("Loading openai")
+class OpenAIClient():
+  def __init__(self):
+    self.openai = openai
+    
+    self.openai.api_key = api_key
+    self.openai.api_base = api_base
+    
+    self.ChatCompletion = self.openai.ChatCompletion 
+    self.Completion = self.openai.Completion
+    self.Image = self.openai.Image
