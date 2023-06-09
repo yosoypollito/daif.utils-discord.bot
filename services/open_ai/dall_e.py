@@ -2,12 +2,15 @@ import openai
 import urllib.request as requests
 
 from .config import openAIClient 
+from log import Log, Feature
+
+log = Log("dall_e", Feature.Command)
 
 async def generateImage(prompt):
-  print("Generating image")
+  log.info("Generating image")
   response = openAIClient.Image.create(prompt=prompt, n=1, size="1024x1024")
   
-  print("Image created")
+  log.info("Image created")
   
   img_url = response["data"][0]["url"]
   

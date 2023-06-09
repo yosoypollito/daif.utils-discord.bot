@@ -1,6 +1,8 @@
 import requests
 from decouple import config
 
+from log import Log, Feature
+
 url = config("RAPID_API_CURRENCY_URL")
 api_key = config("RAPID_API_CURRENCY_KEY")
 api_host = config("RAPID_API_CURRENCY_HOST")
@@ -179,9 +181,11 @@ currencies_codes = {
 "ZWL":"Zimbabwean Dollar"
 }
 
+log = Log("Currency Convertion", Feature.Command)
+
 async def currency_converter(have:str, want:str, amount:float):
 
-  print(have, want, amount)
+  log.info(have, want, amount)
 
   querystring = {"have":have,"want":want,"amount":amount}
 

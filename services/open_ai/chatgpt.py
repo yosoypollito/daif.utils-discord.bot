@@ -1,9 +1,13 @@
 from .proxy_utils import reset_ip
 from .config import openAIClient 
 
+from log import Log, Feature
+
+log = Log("chatgpt", Feature.Command)
+
 async def chatCompletion(prompt:str):
     try:
-        print(f"Generating chat completion... with prompt: {prompt}")
+        log.info(f"Generating chat completion... with prompt: {prompt}")
         response = openAIClient.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -14,7 +18,7 @@ async def chatCompletion(prompt:str):
             ],
         )
         chat_completion_message = response["choices"][0]["message"]["content"]
-        print(f"Chat completion: {chat_completion_message}")
+        log.info(f"Chat completion: {chat_completion_message}")
     
         return chat_completion_message 
 

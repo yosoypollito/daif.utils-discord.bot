@@ -1,6 +1,8 @@
 import requests
 from decouple import config
 
+from log import Log, Feature
+
 url = config("MICROSOFT_TRANSLATE_URL")
 token = config("MICROSOFT_TRANSLATE_API_KEY")
 
@@ -117,6 +119,8 @@ lang_codes = {
 "yua":"Yucatec Maya",
 "zu":"Zulu"
 }
+
+log = Log("Translate", Feature.Command)
 
 async def translate(from_:str, to:str, text:str):
     
