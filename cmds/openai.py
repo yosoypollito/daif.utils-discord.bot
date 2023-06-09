@@ -16,7 +16,7 @@ class OpenAi(app_commands.Group):
             await interaction.response.defer()
             response = await services.chatgpt.chatCompletion(question)
             print(response)
-            await interaction.edit_original_response(content=f"Question:\n`{question}`\n>>> {response}")
+            await interaction.edit_original_response(content=f"```Question:\n{question}```\n>>> {response}")
         @app_commands.command(name="dalle", description="Use dall-e to create an image with text!")
         @app_commands.describe(context="What do you want to create?")
         async def dalle(self, interaction: discord.Interaction, context: str):
