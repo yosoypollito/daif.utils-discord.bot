@@ -1,7 +1,5 @@
 from .proxy_utils import reset_ip
-from .config import OpenAIClient
-
-openAIClient = OpenAIClient()
+from .config import openAIClient 
 
 async def chatCompletion(prompt:str):
     try:

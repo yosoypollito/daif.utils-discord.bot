@@ -1,4 +1,4 @@
 from .chatgpt import chatCompletion
 from .dall_e import generateImage
 
-from .config import OpenAIClient
+from .config import openAIClient 

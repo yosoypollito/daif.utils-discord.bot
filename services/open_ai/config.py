@@ -14,3 +14,5 @@ class OpenAIClient():
     self.ChatCompletion = self.openai.ChatCompletion 
     self.Completion = self.openai.Completion
     self.Image = self.openai.Image
+    
+openAIClient = OpenAIClient()

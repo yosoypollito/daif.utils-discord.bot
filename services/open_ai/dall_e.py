@@ -1,9 +1,7 @@
 import openai
 import urllib.request as requests
 
-from .config import OpenAIClient
-
-openAIClient = OpenAIClient()
+from .config import openAIClient 
 
 async def generateImage(prompt):
   print("Generating image")
