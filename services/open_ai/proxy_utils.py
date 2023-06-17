@@ -14,9 +14,6 @@ async def reset_ip():
 
     response = requests.post(f"{proxy_host}/resetip", headers=headers)
     
-    response_json = response.json()
-    print(response_json)
-    
     print("Done!")
     
-    return response_json
+    return True
