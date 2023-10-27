@@ -9,7 +9,7 @@ async def chatCompletion(prompt:str):
     try:
         log.info(f"Generating chat completion... with prompt: {prompt}")
         response = openAIClient.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="pai-001-light-beta",
             messages=[
                 {
                     "role": "system",
@@ -17,12 +17,16 @@ async def chatCompletion(prompt:str):
                 }
             ],
         )
+        print(response)
         chat_completion_message = response["choices"][0]["message"]["content"]
         log.info(f"Chat completion: {chat_completion_message}")
     
         return chat_completion_message 
 
     except Exception as e:
+        print(e.args)
         if "authorized ip address" in e.args[0].lower():
             await reset_ip()
             return await chatCompletion(prompt)
+        if "Too many requests" in e.args[0]:
+            return "Too many requests, Please try again later."
